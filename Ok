@@ -1,0 +1,46 @@
+-- Only run in this specific place
+if game.PlaceId == 109983668079237 then
+
+    local Players = game:GetService("Players")
+    local player = Players.LocalPlayer
+    local playerGui = player:WaitForChild("PlayerGui")
+
+    -- Create ScreenGui
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "KickGui"
+    screenGui.ResetOnSpawn = false
+    screenGui.Parent = playerGui
+
+    -- Create the red kick button
+    local button = Instance.new("TextButton")
+    button.Name = "KickButton"
+    button.Size = UDim2.new(0, 220, 0, 60)
+    button.Position = UDim2.new(1, -240, 0, 20) -- Top-right
+    button.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+    button.Text = "🚫 Kick Me!"
+    button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    button.TextScaled = true
+    button.Font = Enum.Font.GothamBold
+    button.Parent = screenGui
+
+    -- Rounded corners
+    local corner = Instance.new("UICorner")
+    corner.CornerRadius = UDim.new(0, 12)
+    corner.Parent = button
+
+    -- Border stroke
+    local stroke = Instance.new("UIStroke")
+    stroke.Color = Color3.fromRGB(255, 50, 50)
+    stroke.Thickness = 2
+    stroke.Parent = button
+
+    -- Draggable (PC + mobile)
+    button.Active = true
+    button.Draggable = true
+
+    -- Kick on click
+    button.MouseButton1Click:Connect(function()
+        player:Kick("Kick Successful!")
+    end)
+
+end
